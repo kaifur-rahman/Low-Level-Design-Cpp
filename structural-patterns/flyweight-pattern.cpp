@@ -15,7 +15,7 @@ Avoid redundant model objects
 
 Display all cars’ details using shared flyweights*/
 
-
+//holds intrinsic properties
 class CarType{
     protected:
     string name,color,brand; //Intrinsic Properties
@@ -45,28 +45,34 @@ class CarType{
 //Flyweight manager 
 class CarFactory{
     protected:
-    static unordered_map<string,CarType>map;
+    static unordered_map<string,CarType*>map;
 
     public:
     //name+color+brand acts as unique id of car type
-    static CarType getCarType(string name,string color,string brand){
+    static CarType* getCarType(string name,string color,string brand){
         if(map.find(name+color+brand)!=map.end()){
             //already exist
             return map[name+color+brand];
         }else{
             //new car type
-            CarType newCarType(name,color,brand);   
+            CarType* newCarType=new CarType(name,color,brand);   
             map[name+color+brand]=newCarType;    
             return newCarType;    
         }
     }
+    static int getUniqueCarsCount(){
+        return map.size();
+    }
 };
 
-//Actual car 
+//global initalization of static member of class
+unordered_map<string, CarType*> CarFactory::map;
+
+//Actual car that holds extrinisic + intrinsic properties
 class Car{
     protected:
-    int posX,posY;
-    CarType carType;
+    int posX,posY; //extrinsic
+    CarType* carType; //intrinsic 
 
     public:
     //construtor
@@ -77,8 +83,8 @@ class Car{
     }
 
     void displayCar(){
-        cout<<"Car Name: "<<carType.getCarName()<<" Car Color: "<<carType.getCarColor()<<" Car Brand: "<<
-        carType.getCarBrand()<<" Pos X: "<<this->posX<<" Pos Y: "<<this->posY<<endl;
+        cout<<"Car Name: "<<carType->getCarName()<<" Car Color: "<<carType->getCarColor()<<" Car Brand: "<<
+        carType->getCarBrand()<<" Pos X: "<<this->posX<<" Pos Y: "<<this->posY<<endl;
     }
 };
 
@@ -90,8 +96,15 @@ int main(){
         cars.push_back(car);
     }
 
-    for(auto car:cars){
+    for(int i=0;i<20;i++){
+        Car car(i,i,"Thar","Black","Mahindra");
+        cars.push_back(car);
+    }
+
+    for(auto &car:cars){
         car.displayCar();
     }
+
+    cout<<"No. of unique cars: "<<CarFactory::getUniqueCarsCount();
     return 0;
 }
