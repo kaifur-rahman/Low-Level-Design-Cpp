@@ -1,7 +1,6 @@
 #include<iostream>
 using namespace std;
 
-
 /*Singleton Design Pattern
 Thread Safe: By default
 Eager loading: Automatically initialized before the program main starts

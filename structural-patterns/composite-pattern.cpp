@@ -2,14 +2,18 @@
 #include<bits/stdc++.h>
 
 using namespace std;
+
 //Design System to display organization hierarchy system
+
 class Developer{
     private:
     string name;
+    
     public:
     Developer(string name){
         this->name=name;
     }
+    
     void showDetails(){
         cout<<"Developer: "<<name<<endl;
     }
@@ -18,10 +22,12 @@ class Developer{
 class Manager{
     private:
     string name;
+    
     public:
     Manager(string name){
         this->name=name;
     }
+    
     void showDetails(){
         cout<<"Manager: "<<name<<endl;
     }
@@ -30,10 +36,12 @@ class Manager{
 class CEO{
     private:
     string name;
+    
     public:
     CEO(string name){
         this->name=name;
     }
+    
     void showDetails(){
         cout<<"CEO: "<<name<<endl;
     }

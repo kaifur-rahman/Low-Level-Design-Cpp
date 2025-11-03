@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+//representation
 class House{
     private:
         //mandatory fields
@@ -27,6 +28,8 @@ class House{
         cout<<"Floors: "<<floors<<endl<<"Rooms: "<<rooms<<endl<<"Swimming Pool: "<<swimmingPool<<endl<<"Garden: "<<garden<<endl<<"Parking: "<<parking<<endl;
     }
 };
+
+//construction
 class HouseBuilder{
     private:
         //mandatory fields
@@ -36,25 +39,30 @@ class HouseBuilder{
         bool swimmingPool=false;
         bool garden=false;
         bool parking=false;
+
     public:
         //public constructor
         HouseBuilder(int floors,int rooms){
             this->floors=floors;
             this->rooms=rooms;
         }
+
         //functions to add optional fields
         HouseBuilder* addSwimmingPool(bool swimmingPool){
             this->swimmingPool=swimmingPool;
             return this;//return to make method chaining possible
         }
+
         HouseBuilder* addGarden(bool garden){
             this->garden=garden;
             return this;
         }
+
         HouseBuilder* addParking(bool parking){
             this->parking=parking;
             return this;
         }
+        
         //builder function to buil finally
         House build(){
             return House(floors,swimmingPool,garden,rooms,parking);

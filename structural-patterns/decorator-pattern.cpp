@@ -42,7 +42,7 @@ class PizzaDecorator:public IBasePizza{
     }
 };
 
-//decorator layer
+//decorator layer add behavior on top of existing behavior
 class ExtraCheese:public PizzaDecorator{
     public:
     ExtraCheese(IBasePizza* pizza){

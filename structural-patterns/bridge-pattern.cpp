@@ -36,7 +36,6 @@ class LightMode:public IMode{
 };
 
 //new mode comes in independetly
-
 class HighContrastMode:public IMode{
     public:
     string value()override{

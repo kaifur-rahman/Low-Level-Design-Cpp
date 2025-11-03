@@ -26,7 +26,7 @@ class LoyaltyService{
 };
 
 //Facade pattern putting related subsystems under one class (Exposing simplified api instead of handling everything clien side)
-class BookingFaced{
+class BookingFacade{
     private:
     PaymentService paymentService;
     NotificationService notificationService;
@@ -41,7 +41,7 @@ class BookingFaced{
 };
 
 int main(){
-    BookingFaced bookingService;
+    BookingFacade bookingService;
     bookingService.makeBooking("rahmankaifur8@gmail.com","OID1290",990);
     return 0;
 }
